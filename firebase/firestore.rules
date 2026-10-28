@@ -1,0 +1,21 @@
+rules_version = '2';
+// Hush Studio in-app reports. The app may only create well-formed reports; nobody can read,
+// change or delete them through the API. Review reports in the Firebase console.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /reports/{report} {
+      allow create: if request.resource.data.keys().hasOnly(['reason', 'note', 'text', 'voiceKind', 'appVersion', 'android', 'createdAt'])
+        && request.resource.data.reason in ['Offensive or harmful content', 'Impersonation or deceptive use', 'Sexual content', 'Other']
+        && request.resource.data.note is string && request.resource.data.note.size() <= 1000
+        && request.resource.data.text is string && request.resource.data.text.size() <= 600
+        && request.resource.data.voiceKind in ['built-in', 'cloned', 'model']
+        && request.resource.data.appVersion is string && request.resource.data.appVersion.size() <= 32
+        && request.resource.data.android is int
+        && request.resource.data.createdAt is timestamp;
+      allow read, update, delete: if false;
+    }
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

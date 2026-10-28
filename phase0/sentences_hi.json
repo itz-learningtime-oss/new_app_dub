@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "language": "hi",
+  "note": "Fixed 12-sentence Hindi probe set. 10 core coverage sentences plus 2 stress cases. Never edit existing ids or text: bump version and re-run every candidate instead.",
+  "sentences": [
+    {
+      "id": "n01",
+      "set": "core",
+      "category": "declarative",
+      "text": "आज सुबह मौसम बहुत सुहाना था और हल्की ठंडी हवा चल रही थी।"
+    },
+    {
+      "id": "n02",
+      "set": "core",
+      "category": "digits_grouping",
+      "text": "इस साल कंपनी ने 24,07,000 रुपये का मुनाफ़ा कमाया।"
+    },
+    {
+      "id": "n03",
+      "set": "core",
+      "category": "number_words",
+      "text": "पिछले महीने गाँव में पंद्रह सौ लोगों ने स्वास्थ्य शिविर का लाभ उठाया।"
+    },
+    {
+      "id": "n04",
+      "set": "core",
+      "category": "date_time",
+      "text": "मीटिंग पंद्रह अगस्त की सुबह ठीक दस बजकर तीस मिनट पर शुरू होगी।"
+    },
+    {
+      "id": "n05",
+      "set": "core",
+      "category": "english_loanwords",
+      "text": "मेरा फ़ोन चार्ज नहीं हो रहा, कृपया चार्जर और पावर बैंक दोनों ले आइए।"
+    },
+    {
+      "id": "n06",
+      "set": "core",
+      "category": "long_compound",
+      "text": "अंतर्राष्ट्रीय सहयोग से विकसित इस परियोजना का उद्घाटन विश्वविद्यालय परिसर में किया गया।"
+    },
+    {
+      "id": "n07",
+      "set": "core",
+      "category": "question",
+      "text": "क्या आप बता सकते हैं कि अगली ट्रेन कितने बजे आएगी?"
+    },
+    {
+      "id": "n08",
+      "set": "core",
+      "category": "exclamation",
+      "text": "अरे वाह! यह तो बहुत ही शानदार नज़ारा है।"
+    },
+    {
+      "id": "n09",
+      "set": "core",
+      "category": "proper_nouns",
+      "text": "डॉक्टर शर्मा ने वाराणसी से दिल्ली तक की यात्रा का पूरा ब्यौरा सुनाया।"
+    },
+    {
+      "id": "n10",
+      "set": "core",
+      "category": "danda_multi_clause",
+      "text": "पहले हम बाज़ार जाएँगे। फिर घर लौटकर खाना बनाएँगे। शाम को फ़िल्म देखेंगे।"
+    },
+    {
+      "id": "s01",
+      "set": "stress",
+      "category": "long_paragraph",
+      "text": "गर्मियों की छुट्टियों में हमने पहाड़ों की ओर यात्रा करने का फ़ैसला किया। रास्ते में हमने एक छोटा सा गाँव देखा, जहाँ के लोग बहुत मिलनसार थे। वहाँ का पहाड़ी भोजन इतना स्वादिष्ट था कि हम आज भी उसे याद करते हैं।"
+    },
+    {
+      "id": "s02",
+      "set": "stress",
+      "category": "code_mix",
+      "text": "मीटिंग के बाद मैंने टीम को ईमेल भेज दिया और डैशबोर्ड पर रिपोर्ट अपडेट कर दी।"
+    }
+  ]
+}

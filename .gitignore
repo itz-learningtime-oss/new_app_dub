@@ -1,0 +1,23 @@
+.gradle/
+.gradle-home/
+local.properties
+**/build/
+**/.cxx/
+*.gguf
+*.wav
+# Licensed built-in voice clips (credited in THIRD-PARTY-NOTICES.txt) are part of the app.
+!app/src/main/assets/voices/*.wav
+
+.kotlin/
+.DS_Store
+
+# Local dependencies, model and retained verification artifacts
+dev-deps/
+models/
+artifacts/
+
+# Signing material never belongs in the repository
+keystore.properties
+*.jks
+*.keystore
+

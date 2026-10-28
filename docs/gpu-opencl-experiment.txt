@@ -1,0 +1,27 @@
+OpenCL experiment — 23 October 2026
+
+Connected Moto G71: OpenCL 2.0 Adreno 619. Direct driver probe compiled and
+executed a float GPU kernel; 1024/1024 results matched exactly. This proves GPU
+compute access from the device shell, not full VoxCPM acceleration.
+
+Experimental app build: -PmobileFast=true -PmobileOpenCl=true. Existing Vulkan
+flag must be off. OpenCL-Headers v2024.10.24 extracted in dev-deps; link-only
+phone libOpenCL.so pulled into dev-deps/libOpenCL.so. Do not package that
+vendor library. Manifest declares optional uses-native-library libOpenCL.so.
+Build script currently uses host /usr/bin/python3 for kernel embedding.
+
+Backend changes add explicit OpenCL selection through the existing shared
+WeightStore/backend path. No new tensor layout or per-module loading path.
+An operation-support preflight reports unsupported graphs before execution.
+Default CPU path unchanged; no automatic OpenCL selection in the released app.
+
+The initial model test loaded the driver but aborted in the OpenCL graph
+compute unsupported-operation assertion. This is distinct from Vulkan's loader
+version failure. Experimental build is unsuitable for user narration until
+operator coverage/fallback, correctness and timing are validated. CPU APK is
+restored after testing. No end-to-end GPU speedup is claimed.
+
+Preflight model test completed in 18.682s (failure, not a speed benchmark):
+Error: OpenCL does not support model operation: ARANGE.
+Driver initialization/kernel setup succeeded in app context. First missing op
+identified; further gaps may appear once ARANGE is implemented/falls back.

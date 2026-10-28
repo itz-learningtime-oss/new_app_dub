@@ -1,0 +1,54 @@
+Android Vulkan experiment — 22 October 2026
+Baseline commit: 4a9a86e (Vox Studio 0.1.11 CPU).
+
+Build with -PmobileFast=true -PmobileGpu=true. Experimental flag forces Vulkan;
+CPU remains the default build. Use direct native instrumentation for benchmarks,
+not normal app generation (which can reuse previously cached CPU audio).
+
+Dependencies: Android NDK 28.2.13676358 bundled host glslc; Vulkan-Headers
+v1.4.321 extracted into dev-deps/vulkan/Vulkan-Headers-1.4.321 relative to this
+project. Archive: https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.4.321.tar.gz
+SHA256: 7c1874f9186d9e7d5245e279cdccaa77a66ed8f52871b428630aeb771dc7623c
+Current host configuration is macOS; shader compiler path uses darwin-x86_64.
+
+Results: GPU build succeeded. Physical Moto G71 Android 12 advertises Vulkan
+1.1 (4198400) and compute support. Native benchmark initialization failed:
+  ggml_vulkan: Error: Vulkan 1.2 required.
+This is a loader/API compatibility failure before inference, not a performance
+result. Do not remove the version guard: newer Vulkan feature and shader
+contracts require a deliberate compatibility implementation and validation.
+No weights, state ownership, tensor layouts or inference operators were changed.
+Boundary audit completed; existing shared WeightStore and runtime paths retained.
+CPU app restored afterward. No GPU speed or output-quality claim.
+
+Next investigation: query individual device extensions/features and determine
+whether a Vulkan 1.1-compatible backend port is feasible; alternatively assess
+an Android-supported OpenCL/Qualcomm path. Either needs backend/operator coverage
+validation. A Snapdragon label alone does not guarantee this Vulkan runtime works.
+
+23 October automatic backend implementation (0.1.12)
+- Separate libvoxstudio_cpu.so and libvoxstudio_gpu.so; GPU driver dependency
+  never prevents CPU engine loading. OpenCL vendor library is not packaged.
+- GPU native work runs in private :gpu service process with Messenger IPC.
+  Progress is relayed; cancellation forwarded. Process death, load failure,
+  returned errors and a two-minute timeout cause CPU retry. Failure is remembered
+  per firmware fingerprint/app version. CPU remains available without GPU.
+- OpenCL graph scheduler dispatches unsupported operations to CPU; persistent
+  State/KV/Output allocations use explicit CPU-owned staging for this experiment.
+  Shared weights retained. GPU/CPU state transfer cost is not yet optimized.
+- Full GPU narration is NOT qualified on Moto G71. Tests exposed device-metadata
+  and persistent-view scheduler failures. Force-GPU test failed, not a benchmark.
+  No claim of full GPU support on any phone without passing those tests.
+- Actual GPU process crash was contained and automatic CPU retry produced valid
+  PCM (benchmark test passed in 51.617s including failed GPU attempt).
+  Next automatic generation skipped GPU and passed in 6.543s. These use different
+  scripts, so elapsed times are not a throughput comparison.
+- Build, lint, 13 host tests passed. Final APK signature and 16KB ZIP alignment
+  passed. Default app is automatic but this device is remembered as CPU fallback.
+
+Rebuilding both engines: first assembleDebug with -PmobileFast=true and GPU flags
+OFF. Extract lib/arm64-v8a/libvoxstudio_cpu.so from that APK into
+dev-deps/cpu-jni/arm64-v8a/libvoxstudio_cpu.so relative to project. Then build
+with -PmobileFast=true -PmobileOpenCl=true. OpenCL headers and link-only vendor
+library preparation are documented in docs/gpu-opencl-experiment.txt. Use matching CPU
+and GPU architecture flags; this artifact requires FP16/dot-product CPU support.

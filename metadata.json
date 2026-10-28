@@ -1,0 +1,6 @@
+{
+  "name": "Hush Studio",
+  "description": "Offline speech generation and voice cloning studio",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

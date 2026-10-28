@@ -1,0 +1,78 @@
+{
+ "version": 2,
+ "note": "Built-in voices are reference clips for the single shared speech model, not separate models. Every clip below is a real recording used under the stated licence; credits are in THIRD-PARTY-NOTICES.txt. Display names are invented and do not identify the speakers, except Jenny (Dioco), whose licence requires that name.",
+ "voices": [
+  {
+   "id": "aria",
+   "name": "Aria",
+   "gender": "female",
+   "accent": "US",
+   "style": "Audiobook narrator",
+   "transcript": "Trustworthy evidence is forthcoming to the effect that these high figures were constantly maintained for many months at a time.",
+   "file": "aria.wav",
+   "placeholder": false,
+   "source": "LJ Speech 1.1, lj-002-0017.wav",
+   "license": "Public domain (LJ Speech, Linda Johnson / LibriVox)"
+  },
+  {
+   "id": "jenny",
+   "name": "Jenny (Dioco)",
+   "gender": "female",
+   "accent": "",
+   "style": "Natural, expressive",
+   "transcript": "How funny... She did not finish her speech, for Belle shook her head at her and broke in, saying kindly...",
+   "file": "jenny.wav",
+   "placeholder": false,
+   "source": "Jenny TTS dataset, jenny/10092",
+   "license": "Jenny TTS dataset by Dioco; commercial use permitted; the voice must be called Jenny (Dioco)"
+  },
+  {
+   "id": "maya",
+   "name": "Maya",
+   "gender": "female",
+   "accent": "",
+   "style": "Audiobook narrator",
+   "transcript": "They've only to get somebody for the job who does not know you carry enough stuff in your pocket to blow yourself and everything within sixty yards of you to pieces.",
+   "file": "maya.wav",
+   "placeholder": false,
+   "source": "Hi-Fi TTS speaker 92, audio/92_clean/10425/secretagent_04_conrad_0178.flac",
+   "license": "Hi-Fi Multi-Speaker English TTS Dataset (NVIDIA, Bakhturina et al. 2021), CC BY 4.0; source audio LibriVox, public domain"
+  },
+  {
+   "id": "ethan",
+   "name": "Ethan",
+   "gender": "male",
+   "accent": "",
+   "style": "Audiobook narrator",
+   "transcript": "The late Mr. Leslie, who died in eighteen seventy-four, tells it in his book",
+   "file": "ethan.wav",
+   "placeholder": false,
+   "source": "Hi-Fi TTS speaker 6097, audio/6097_clean/14411/nada_lily_00_haggard_0201.flac",
+   "license": "Hi-Fi Multi-Speaker English TTS Dataset (NVIDIA, Bakhturina et al. 2021), CC BY 4.0; source audio LibriVox, public domain"
+  },
+  {
+   "id": "cole",
+   "name": "Cole",
+   "gender": "male",
+   "accent": "",
+   "style": "Calm narrator",
+   "transcript": "The royal ordinance of eighteen sixty-six resulted, which was to regulate the cutting on settled lands and in such new settlements as were thereafter allowed.",
+   "file": "cole.wav",
+   "placeholder": false,
+   "source": "Hi-Fi TTS speaker 9017, audio/9017_clean/13089/historyofforestry_15_fernow_0129.flac",
+   "license": "Hi-Fi Multi-Speaker English TTS Dataset (NVIDIA, Bakhturina et al. 2021), CC BY 4.0; source audio LibriVox, public domain"
+  },
+  {
+   "id": "priya",
+   "name": "Priya",
+   "gender": "female",
+   "accent": "IN",
+   "style": "Clear, measured",
+   "transcript": "The main concern is that it could interfere with air traffic. Because it's a waste of time for both sides.",
+   "file": "priya.wav",
+   "placeholder": false,
+   "source": "CSTR VCTK Corpus 0.92 speaker p248, p248_029_mic1 + p248_031_mic1",
+   "license": "CSTR VCTK Corpus, University of Edinburgh, CC BY 4.0"
+  }
+ ]
+}

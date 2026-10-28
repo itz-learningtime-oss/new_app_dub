@@ -1,0 +1,46 @@
+# Order matters on Colab/Kaggle.
+#
+# chatterbox-tts 0.1.7 pins torch==2.6.0, torchaudio==2.6.0, numpy<2 and
+# transformers==5.2.0. Colab ships a newer torch + a cu130 torchvision, so
+# letting pip resolve freely downgrades torch and leaves torchvision/torchaudio
+# binary-incompatible ("requires torch==2.11.0, but you have torch 2.6.0").
+#
+# Pinning the whole trio here keeps them consistent. 0.21 is the torchvision
+# release built against torch 2.6.0.
+#
+# After installing: Runtime -> Restart session (binary wheels need a fresh
+# process), then `python phase0/run.py doctor`.
+
+torch==2.6.0
+torchvision==0.21.0
+torchaudio==2.6.0
+# numpy depends on the Python version: 1.26.4 is the last 1.x with wheels up to
+# cp312, and chatterbox 0.1.7 actually requires numpy>=2 on python 3.13+.
+# 2.2.6 is the ceiling numba (via librosa) accepts.
+numpy==1.26.4; python_version < "3.13"
+numpy==2.2.6; python_version >= "3.13"
+
+# --- core: reference checks, WAV I/O, scoring -------------------------------
+scipy>=1.11
+soundfile>=0.12
+
+# --- metrics -----------------------------------------------------------------
+faster-whisper>=1.0      # Hindi ASR (large-v3) for WER/CER
+speechbrain>=1.0         # ECAPA-TDNN speaker embeddings for SIM
+huggingface_hub>=0.23
+
+# --- primary candidate -------------------------------------------------------
+chatterbox-tts>=0.1.7
+transformers==5.2.0
+safetensors>=0.5.3
+
+# --- optional, separate session ---------------------------------------------
+# IndicF5 expects transformers 4.x, which conflicts with chatterbox's 5.2.0 pin.
+# Run it in its own session, see phase0/README.md.
+#   transformers==4.46.3
+#   vocos
+# VoxCPM2 is a control only; its package pulls its own torch pins.
+#   voxcpm
+#
+# Not required: jiwer (WER is implemented in phase0/bakeoff/textnorm.py).
+# GGUF candidates shell out to codec.cpp's tts-cli; no Python package needed.
